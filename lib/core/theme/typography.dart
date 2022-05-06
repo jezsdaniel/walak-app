@@ -1,0 +1,110 @@
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+
+import 'package:walak/core/theme/theme.dart';
+
+const wText = TextTheme(
+  headline1: TextStyle(
+    color: WColors.text,
+    fontFamily: 'Kanit',
+    fontWeight: FontWeight.w400,
+    fontSize: 107,
+    height: 1,
+    letterSpacing: -1.5,
+  ),
+  headline2: TextStyle(
+    color: WColors.text,
+    fontFamily: 'Kanit',
+    fontWeight: FontWeight.w400,
+    fontSize: 67,
+    height: 1,
+    letterSpacing: -0.5,
+  ),
+  headline3: TextStyle(
+    color: WColors.text,
+    fontFamily: 'Kanit',
+    fontWeight: FontWeight.w500,
+    fontSize: 54,
+    height: 1,
+  ),
+  headline4: TextStyle(
+    color: WColors.text,
+    fontFamily: 'Kanit',
+    fontWeight: FontWeight.w500,
+    fontSize: 38,
+    letterSpacing: 0.25,
+    height: 1,
+  ),
+  headline5: TextStyle(
+    color: WColors.text,
+    fontFamily: 'Kanit',
+    fontWeight: FontWeight.w500,
+    fontSize: 28,
+    height: 1.14,
+  ),
+  headline6: TextStyle(
+    color: WColors.text,
+    fontFamily: 'Kanit',
+    fontWeight: FontWeight.w400,
+    fontSize: 22,
+    height: 1,
+    letterSpacing: 0.4,
+  ),
+  subtitle1: TextStyle(
+    color: WColors.text,
+    fontFamily: 'Kanit',
+    fontWeight: FontWeight.w400,
+    fontSize: 18,
+    letterSpacing: 0.15,
+    height: 1.16,
+  ),
+  subtitle2: TextStyle(
+    color: WColors.text,
+    fontFamily: 'Kanit',
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    letterSpacing: 0.1,
+    height: 1.12,
+  ),
+  bodyText1: TextStyle(
+    color: WColors.text,
+    fontFamily: 'OpenSans',
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    letterSpacing: 0.5,
+    height: 1.25,
+  ),
+  bodyText2: TextStyle(
+    color: WColors.text,
+    fontFamily: 'OpenSans',
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+    letterSpacing: 0.25,
+    height: 1.28,
+  ),
+  button: TextStyle(
+    color: WColors.text,
+    fontFamily: 'Kanit',
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+    letterSpacing: 1,
+    height: 1.4,
+  ),
+  caption: TextStyle(
+    color: WColors.text,
+    fontFamily: 'OpenSans',
+    fontWeight: FontWeight.w400,
+    fontSize: 12,
+    letterSpacing: 0.4,
+    height: 1.25,
+  ),
+  overline: TextStyle(
+    color: WColors.text,
+    fontFamily: 'OpenSans',
+    fontWeight: FontWeight.w600,
+    fontSize: 10,
+    letterSpacing: 0.6,
+    height: 1.2,
+  ),
+);
