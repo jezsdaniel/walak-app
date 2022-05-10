@@ -14,6 +14,7 @@ class WColors {
 
   static const success = Color(0xff00B46E);
   static const error = Color(0xffD50000);
+  static const errorLight = Color(0xffFBEAEA);
   static const warning = Color(0xffFFC400);
 
   static const text = Color(0xff050505);

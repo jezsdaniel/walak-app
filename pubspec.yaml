@@ -30,14 +30,16 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
+  dio: ^4.0.6
   flutter_bloc: ^8.0.1
   flutter_secure_storage: ^5.0.2
   flutter_svg: ^1.0.3
   fluttertoast: ^8.0.9
-  http: ^0.13.4
   image_cropper: ^2.0.0
   image_picker: ^0.8.5
+  jwt_decoder: ^2.0.1
   unicons: ^2.1.0
+  dio_logging_interceptor: ^1.0.1
 
 dev_dependencies:
   flutter_test:

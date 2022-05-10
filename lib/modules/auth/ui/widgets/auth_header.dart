@@ -20,13 +20,14 @@ class AuthHeader extends StatelessWidget {
               width: double.infinity,
               margin: const EdgeInsets.only(top: 16),
               alignment: Alignment.topLeft,
-              child: SvgPicture.asset(
-                'assets/img/logo.svg',
+              child: Image.asset(
+                'assets/img/logo.png',
                 width: 56,
+                fit: BoxFit.cover,
               ),
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 24),
           Text(
             'Iniciar sesión',
             style: wText.headline4!.copyWith(

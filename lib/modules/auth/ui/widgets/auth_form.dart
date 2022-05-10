@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unicons/unicons.dart';
 
+import 'package:walak/core/network/request_status.dart';
 import 'package:walak/core/theme/theme.dart';
 import 'package:walak/core/utils/utils.dart';
+import 'package:walak/core/widgets/widgets.dart';
+import 'package:walak/modules/auth/bloc/auth_bloc.dart';
 
 class AuthForm extends StatefulWidget {
   const AuthForm({
@@ -23,7 +27,14 @@ class _AuthFormState extends State<AuthForm> {
   final passwordController = TextEditingController();
 
   void submit() {
+    FocusScope.of(context).unfocus();
     if (!formKey.currentState!.validate()) return;
+    context.read<AuthBloc>().add(
+          AuthEventSignIn(
+            emailController.text,
+            passwordController.text,
+          ),
+        );
   }
 
   @override
@@ -71,12 +82,45 @@ class _AuthFormState extends State<AuthForm> {
                 ),
               ),
             ),
+            BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
+              if (state.status == RequestStatus.failure) {
+                return Container(
+                  margin: const EdgeInsets.only(top: 24),
+                  child: WAlertContainer(
+                    error: state.error,
+                  ),
+                );
+              }
+              return Container();
+            }),
             const SizedBox(height: 48),
             SizedBox(
               width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () => submit(),
-                child: const Text('INGRESAR'),
+              child: BlocBuilder<AuthBloc, AuthState>(
+                builder: (context, state) {
+                  return ElevatedButton(
+                    onPressed: state.status == RequestStatus.inProgress
+                        ? null
+                        : () {
+                            submit();
+                          },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('INGRESAR'),
+                        if (state.status == RequestStatus.inProgress)
+                          Container(
+                            width: 20,
+                            height: 20,
+                            margin: const EdgeInsets.only(left: 12),
+                            child: const CircularProgressIndicator(
+                              strokeWidth: 2,
+                            ),
+                          ),
+                      ],
+                    ),
+                  );
+                },
               ),
             ),
           ],
