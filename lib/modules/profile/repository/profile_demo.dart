@@ -23,4 +23,18 @@ class ProfileDemo implements ProfileRepository {
       },
     );
   }
+
+  @override
+  Future<Result<bool>> changePassword(
+      String email, String oldPassword, String newPassword) {
+    return Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        return Result.success(
+          value: true,
+        );
+        // return ResultError(error: 'Ups :/');
+      },
+    );
+  }
 }

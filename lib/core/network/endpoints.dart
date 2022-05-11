@@ -14,4 +14,5 @@ class Endpoints {
   static const String signIn = '/user/login';
   static const String refreshToken = '/user/refresh-token';
   static const String getUserProfile = '/user';
+  static const String changePassword = '/user/change-password';
 }

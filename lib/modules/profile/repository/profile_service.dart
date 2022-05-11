@@ -26,4 +26,30 @@ class ProfileService implements ProfileRepository {
       return Result.error(error: ex);
     }
   }
+
+  @override
+  Future<Result<bool>> changePassword(
+      String email, String oldPassword, String newPassword) async {
+    try {
+      final res = await NetworkHandler().dio.post(
+        Endpoints.changePassword,
+        queryParameters: {
+          'email': email,
+        },
+        data: {
+          'oldPAssword': oldPassword,
+          'newPassword': newPassword,
+        },
+      );
+      if (res.statusCode == Endpoints.codeSuccess) {
+        return Result.success(
+          value: true,
+        );
+      } else {
+        throw ServerException.fromJson(res.statusCode, res.data);
+      }
+    } catch (ex) {
+      return Result.error(error: ex);
+    }
+  }
 }

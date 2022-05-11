@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'colors.dart';
+import 'shadows.dart';
 import 'typography.dart';
 
 export 'colors.dart';
+export 'shadows.dart';
 export 'typography.dart';
 
 final wTheme = ThemeData(
@@ -56,6 +58,11 @@ final wTheme = ThemeData(
       borderSide: const BorderSide(
         color: WColors.borders,
       ),
+    ),
+  ),
+  dialogTheme: DialogTheme(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(16),
     ),
   ),
 );

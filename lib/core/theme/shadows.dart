@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class UShadows {
-  UShadows._();
+class WShadows {
+  WShadows._();
 
   static const List<BoxShadow> elevation1 = [
     BoxShadow(

@@ -22,11 +22,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with NetworkErrorHandler {
       ));
       final res = await _authRepository.signIn(event.email, event.password);
       if (res is ResultSuccess<User>) {
-        emit(state.copyWith(
-          authStatus: AuthStatus.AUTHENTICATED,
-          status: RequestStatus.success,
-          user: res.value,
-        ));
+        if (res.value.userType != 2) {
+          emit(state.copyWith(
+            status: RequestStatus.failure,
+            error: 'Su usuario no está autorizado a acceder a la aplicación',
+          ));
+        } else {
+          emit(state.copyWith(
+            authStatus: AuthStatus.AUTHENTICATED,
+            status: RequestStatus.success,
+            user: res.value,
+          ));
+        }
       } else {
         emit(state.copyWith(
           status: RequestStatus.failure,
