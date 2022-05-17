@@ -2,20 +2,20 @@ import 'package:walak/modules/services/models/models.dart';
 
 class User {
   final int id;
-  final int userId;
+  final int? userId;
   final String name;
   final String email;
   final int userType;
-  final int level;
+  final int? level;
   final List<WalakService> services;
 
   User({
     required this.id,
-    required this.userId,
+    this.userId,
     required this.name,
     required this.email,
     required this.userType,
-    required this.level,
+    this.level,
     required this.services,
   });
 
@@ -24,11 +24,13 @@ class User {
       id: json['id'],
       userId: json['userId'],
       name: json['name'],
-      email: json['email'],
+      email: json['email'] ?? '',
       userType: json['userType'],
       level: json['level'],
-      services: List<WalakService>.from(
-          json['services'].map((x) => WalakService.fromJson(x))),
+      services: json['services'] != null
+          ? List<WalakService>.from(
+              json['services'].map((x) => WalakService.fromJson(x)))
+          : [],
     );
   }
 

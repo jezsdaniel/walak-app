@@ -17,6 +17,10 @@ class NetworkErrorHandler {
     if (error is String) {
       return error;
     } else if (error is DioError) {
+      if (error.requestOptions.extra['tokenErrorType'] != null &&
+          error.requestOptions.extra['tokenErrorType'] == 'tokenErrorType') {
+        return 'Su sesión ha expirado, por favor vuelva a iniciar sesión';
+      }
       if (error.response != null && error.response!.data != null) {
         if (error.response?.data[('message')] != null) {
           return error.response?.data[('message')];

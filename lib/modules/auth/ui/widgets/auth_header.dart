@@ -19,10 +19,10 @@ class AuthHeader extends StatelessWidget {
             child: Container(
               width: double.infinity,
               margin: const EdgeInsets.only(top: 16),
-              alignment: Alignment.topLeft,
+              alignment: Alignment.center,
               child: Image.asset(
-                'assets/img/logo.png',
-                width: 56,
+                'assets/img/full-logo.png',
+                height: 32,
                 fit: BoxFit.cover,
               ),
             ),

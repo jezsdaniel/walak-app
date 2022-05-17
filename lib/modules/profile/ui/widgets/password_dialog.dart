@@ -57,9 +57,13 @@ class _PasswordDialogState extends State<PasswordDialog> {
             listener: (context, state) {
               if (state.status == RequestStatus.success) {
                 Navigator.of(context).pop();
-                const snackBar = SnackBar(
-                  content: Text('Contraseña cambiada correctamente'),
-                  duration: Duration(seconds: 6),
+                final snackBar = SnackBar(
+                  content: Text(
+                    'Contraseña cambiada correctamente',
+                    style:
+                        wText.subtitle2!.copyWith(color: WColors.textContrast),
+                  ),
+                  duration: const Duration(seconds: 6),
                   backgroundColor: WColors.success,
                 );
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);

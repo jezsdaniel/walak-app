@@ -8,16 +8,21 @@ import 'package:walak/modules/auth/bloc/auth_bloc.dart';
 import 'package:walak/modules/auth/repository/auth_repository.dart';
 import 'package:walak/modules/auth/ui/auth_page.dart';
 import 'package:walak/modules/auth/ui/splash_page.dart';
+import 'package:walak/modules/payments/bloc/payments_bloc.dart';
+import 'package:walak/modules/payments/repository/payments_repository.dart';
+import 'package:walak/modules/profile/bloc/profile_bloc.dart';
 import 'package:walak/modules/profile/repository/profile_repository.dart';
 
 class WalakApp extends StatelessWidget {
   final AuthRepository authRepository;
   final ProfileRepository profileRepository;
+  final PaymentsRepository paymentsRepository;
 
   WalakApp({
     Key? key,
     required this.authRepository,
     required this.profileRepository,
+    required this.paymentsRepository,
   }) : super(key: key);
 
   final _navigatorKey = GlobalKey<NavigatorState>();
@@ -33,29 +38,42 @@ class WalakApp extends StatelessWidget {
         RepositoryProvider<ProfileRepository>(
           create: (_) => profileRepository,
         ),
+        RepositoryProvider<PaymentsRepository>(
+          create: (_) => paymentsRepository,
+        ),
       ],
       child: BlocProvider(
         create: (_) => AuthBloc(authRepository, profileRepository),
-        child: MaterialApp(
-          title: 'Walak',
-          theme: wTheme,
-          navigatorKey: _navigatorKey,
-          onGenerateRoute: (_) => SplashPage.route(),
-          builder: (context, child) {
-            return BlocListener<AuthBloc, AuthState>(
-              listener: (context, state) {
-                if (state.authStatus == AuthStatus.AUTHENTICATED) {
-                  _navigator.pushAndRemoveUntil<void>(
-                      MainPage.route(), (route) => false);
-                }
-                if (state.authStatus == AuthStatus.UNAUTHENTICATED) {
-                  _navigator.pushAndRemoveUntil<void>(
-                      AuthPage.route(), (route) => false);
-                }
-              },
-              child: child,
-            );
-          },
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => ProfileBloc(profileRepository),
+            ),
+            BlocProvider(
+              create: (context) => PaymentsBloc(paymentsRepository),
+            ),
+          ],
+          child: MaterialApp(
+            title: 'Walak',
+            theme: wTheme,
+            navigatorKey: _navigatorKey,
+            onGenerateRoute: (_) => SplashPage.route(),
+            builder: (context, child) {
+              return BlocListener<AuthBloc, AuthState>(
+                listener: (context, state) {
+                  if (state.authStatus == AuthStatus.AUTHENTICATED) {
+                    _navigator.pushAndRemoveUntil<void>(
+                        MainPage.route(), (route) => false);
+                  }
+                  if (state.authStatus == AuthStatus.UNAUTHENTICATED) {
+                    _navigator.pushAndRemoveUntil<void>(
+                        AuthPage.route(), (route) => false);
+                  }
+                },
+                child: child,
+              );
+            },
+          ),
         ),
       ),
     );

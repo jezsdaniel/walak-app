@@ -19,10 +19,13 @@ class SplashPage extends StatelessWidget {
       authBloc: BlocProvider.of<AuthBloc>(context),
     );
     context.read<AuthBloc>().add(AuthEventVerify());
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: WColors.secondaryVariant,
       body: Center(
-        child: CircularProgressIndicator(),
+        child: Image.asset(
+          'assets/img/logo.png',
+          height: 72,
+        ),
       ),
     );
   }

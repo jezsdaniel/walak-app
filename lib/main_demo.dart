@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'package:walak/app.dart';
 import 'package:walak/modules/auth/repository/auth_demo.dart';
+import 'package:walak/modules/payments/repository/payments_demo.dart';
 import 'package:walak/modules/profile/repository/profile_demo.dart';
 
 void main() async {
@@ -15,6 +16,7 @@ void main() async {
     WalakApp(
       authRepository: AuthDemo(),
       profileRepository: ProfileDemo(),
+      paymentsRepository: PaymentsDemo()
     ),
   );
 }

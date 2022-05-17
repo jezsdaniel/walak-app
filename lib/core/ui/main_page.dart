@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:unicons/unicons.dart';
 
 import 'package:walak/core/theme/theme.dart';
+import 'package:walak/modules/payments/ui/payments_page.dart';
 import 'package:walak/modules/profile/ui/profile_page.dart';
 
 class MainPage extends StatefulWidget {
@@ -21,6 +22,8 @@ class _MainPageState extends State<MainPage> {
 
   Widget getPage(int index) {
     switch (index) {
+      case 1:
+        return const PaymentsPage();
       case 2:
         return const ProfilePage();
       default:

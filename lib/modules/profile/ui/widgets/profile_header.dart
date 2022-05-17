@@ -26,20 +26,22 @@ class ProfileHeader extends StatelessWidget {
             return Column(
               children: [
                 Text(
-                  getUserTypeName(state.user!.userType).toUpperCase(),
+                  state.user == null
+                      ? ''
+                      : getUserTypeName(state.user!.userType).toUpperCase(),
                   style: wText.caption!.copyWith(
                     color: WColors.textContrast,
                   ),
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  state.user!.name,
+                  state.user == null ? '' : state.user!.name,
                   style: wText.headline5!.copyWith(
                     color: WColors.textContrast,
                   ),
                 ),
                 Text(
-                  state.user!.email,
+                  state.user == null ? '' : state.user!.email,
                   style: wText.subtitle2!.copyWith(
                     color: WColors.textContrast,
                   ),

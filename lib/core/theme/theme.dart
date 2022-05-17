@@ -65,4 +65,12 @@ final wTheme = ThemeData(
       borderRadius: BorderRadius.circular(16),
     ),
   ),
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    backgroundColor: WColors.primary,
+    foregroundColor: WColors.textContrast,
+    elevation: 2,
+    hoverElevation: 4,
+    focusElevation: 4,
+    highlightElevation: 6,
+  ),
 );
