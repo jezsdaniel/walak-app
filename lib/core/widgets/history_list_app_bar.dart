@@ -7,11 +7,15 @@ import 'package:walak/core/theme/theme.dart';
 class HistoryListAppBar extends StatelessWidget {
   final bool innerBoxIsScrolled;
   final TextEditingController searchController;
+  final Widget? filters;
+  final void Function()? onFilter;
 
   const HistoryListAppBar({
     Key? key,
     required this.innerBoxIsScrolled,
     required this.searchController,
+    this.filters,
+    this.onFilter,
   }) : super(key: key);
 
   @override
@@ -53,14 +57,39 @@ class HistoryListAppBar extends StatelessWidget {
           ),
         ),
         actions: [
-          IconButton(
-            icon: const Icon(
-              UniconsLine.filter,
-              color: WColors.textHighEmphasis,
+          if (filters != null)
+            Container(
+              margin: const EdgeInsets.only(right: 12),
+              child: IconButton(
+                icon: const Icon(
+                  UniconsLine.filter,
+                  color: WColors.textHighEmphasis,
+                ),
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text('Filtros'),
+                          content: filters!,
+                          actions: [
+                            Container(
+                              margin: const EdgeInsets.all(12),
+                              width: double.infinity,
+                              child: OutlinedButton(
+                                onPressed: () {
+                                  onFilter?.call();
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Text('Listo'),
+                              ),
+                            ),
+                          ],
+                        );
+                      });
+                },
+              ),
             ),
-            onPressed: () {},
-          ),
-          const SizedBox(width: 12),
         ],
       ),
       title: Image.asset(

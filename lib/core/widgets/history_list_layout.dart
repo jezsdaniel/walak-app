@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import 'package:walak/core/widgets/widgets.dart';
 
 class HistoryListLayout extends StatefulWidget {
-  final Widget list;
+  final Widget body;
   final Widget? fab;
   final bool isLoading;
-  final TextEditingController searchController;
 
   const HistoryListLayout({
     Key? key,
-    required this.list,
+    required this.body,
     this.fab,
     this.isLoading = false,
-    required this.searchController,
   }) : super(key: key);
 
   @override
@@ -42,18 +39,7 @@ class _HistoryListLayoutState extends State<HistoryListLayout> {
               });
               return true;
             },
-            child: NestedScrollView(
-              headerSliverBuilder:
-                  (BuildContext context, bool innerBoxIsScrolled) {
-                return <Widget>[
-                  HistoryListAppBar(
-                    innerBoxIsScrolled: innerBoxIsScrolled,
-                    searchController: widget.searchController,
-                  ),
-                ];
-              },
-              body: widget.list,
-            ),
+            child: widget.body,
           ),
         ),
         if (widget.fab != null)
