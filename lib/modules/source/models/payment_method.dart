@@ -67,4 +67,35 @@ class PaymentMethod {
         return '';
     }
   }
+
+  String get icon {
+    switch (name.toLowerCase()) {
+      case 'bank-transfer':
+        return 'assets/pm-icons/bank-transfer-icon.svg';
+      case 'cash':
+        return 'assets/pm-icons/cash-icon.svg';
+      case 'paycheck':
+        return 'assets/pm-icons/paycheck-icon.svg';
+      case 'credit-card':
+        return 'assets/pm-icons/credit-card-icon.svg';
+      case 'dai':
+        return 'assets/pm-icons/dai-icon.svg';
+      case 'cashapp':
+        return 'assets/pm-icons/cashapp-icon.svg';
+      case 'paypal':
+        return 'assets/pm-icons/paypal-icon.svg';
+      case 'usd-coin':
+        return 'assets/pm-icons/usd-coin-icon.svg';
+      case 'usdt':
+        return 'assets/pm-icons/usdt-icon.svg';
+      case 'venmo':
+        return 'assets/pm-icons/venmo-icon.svg';
+      case 'zelle':
+        return 'assets/pm-icons/zelle-icon.svg';
+      case 'walak-credit':
+        return 'assets/pm-icons/walak-icon.svg';
+      default:
+        return 'assets/pm-icons/walak-icon.svg';
+    }
+  }
 }

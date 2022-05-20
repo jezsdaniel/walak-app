@@ -16,6 +16,11 @@ class Endpoints {
   static const String getUserProfile = '/user';
   static const String changePassword = '/user/change-password';
 
+  //nomenclator
+  static const String getAllPaymentMethods =
+      '/nomenclator/payments_methods/all';
+
   //source
+  static const String getSource = '/source';
   static const String getDepositRequest = '/source/deposit/request';
 }

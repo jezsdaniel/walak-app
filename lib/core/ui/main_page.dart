@@ -1,10 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:unicons/unicons.dart';
 
 import 'package:walak/core/theme/theme.dart';
 import 'package:walak/modules/payments/ui/payments_page.dart';
 import 'package:walak/modules/profile/ui/profile_page.dart';
+import 'package:walak/modules/source/bloc/source_bloc.dart';
 
 class MainPage extends StatefulWidget {
   static Route route() {
@@ -18,6 +22,24 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<SourceBloc>().add(SourceEventGetBalance());
+    context.read<SourceBloc>().add(SourceEventGetPaymentMethods());
+    timer = Timer.periodic(const Duration(minutes: 2), (_) {
+      context.read<SourceBloc>().add(SourceEventGetBalance());
+    });
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
+
   int currentTab = 0;
 
   Widget getPage(int index) {

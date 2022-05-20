@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unicons/unicons.dart';
 
 import 'package:walak/core/theme/theme.dart';
+import 'package:walak/modules/source/bloc/source_bloc.dart';
 
 class HistoryListAppBar extends StatelessWidget {
   final bool innerBoxIsScrolled;
@@ -59,7 +61,7 @@ class HistoryListAppBar extends StatelessWidget {
         actions: [
           if (filters != null)
             Container(
-              margin: const EdgeInsets.only(right: 12),
+              margin: const EdgeInsets.only(left: 8, right: 16),
               child: IconButton(
                 icon: const Icon(
                   UniconsLine.filter,
@@ -67,26 +69,27 @@ class HistoryListAppBar extends StatelessWidget {
                 ),
                 onPressed: () {
                   showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: const Text('Filtros'),
-                          content: filters!,
-                          actions: [
-                            Container(
-                              margin: const EdgeInsets.all(12),
-                              width: double.infinity,
-                              child: OutlinedButton(
-                                onPressed: () {
-                                  onFilter?.call();
-                                  Navigator.of(context).pop();
-                                },
-                                child: const Text('Listo'),
-                              ),
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: const Text('Filtros'),
+                        content: filters!,
+                        actions: [
+                          Container(
+                            margin: const EdgeInsets.all(12),
+                            width: double.infinity,
+                            child: OutlinedButton(
+                              onPressed: () {
+                                onFilter?.call();
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text('Listo'),
                             ),
-                          ],
-                        );
-                      });
+                          ),
+                        ],
+                      );
+                    },
+                  );
                 },
               ),
             ),
@@ -97,26 +100,34 @@ class HistoryListAppBar extends StatelessWidget {
         width: 48,
       ),
       actions: [
-        Container(
-          height: 40,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'Balance disponible',
-                  style: wText.caption,
+        BlocBuilder<SourceBloc, SourceState>(
+          builder: (context, state) {
+            if (state.balance != null) {
+              return Container(
+                height: 40,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'Balance disponible',
+                        style: wText.caption,
+                      ),
+                      Text(
+                        '\$${state.balance!.availableBalance.toStringAsFixed(2)}',
+                        style: wText.subtitle2,
+                      ),
+                    ],
+                  ),
                 ),
-                Text(
-                  '\$100',
-                  style: wText.subtitle2,
-                ),
-              ],
-            ),
-          ),
+              );
+            }
+            return Container();
+          },
         ),
       ],
     );

@@ -1,4 +1,4 @@
-import 'package:walak/core/models/payment_method.dart';
+import 'package:walak/modules/source/models/payment_method.dart';
 import 'package:walak/core/network/network.dart';
 import 'package:walak/modules/payments/models/models.dart';
 import 'package:walak/modules/payments/repository/payments_repository.dart';

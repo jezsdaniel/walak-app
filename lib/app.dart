@@ -12,17 +12,21 @@ import 'package:walak/modules/payments/bloc/payments_bloc.dart';
 import 'package:walak/modules/payments/repository/payments_repository.dart';
 import 'package:walak/modules/profile/bloc/profile_bloc.dart';
 import 'package:walak/modules/profile/repository/profile_repository.dart';
+import 'package:walak/modules/source/bloc/source_bloc.dart';
+import 'package:walak/modules/source/repository/source_repository.dart';
 
 class WalakApp extends StatelessWidget {
   final AuthRepository authRepository;
   final ProfileRepository profileRepository;
   final PaymentsRepository paymentsRepository;
+  final SourceRepository sourceRepository;
 
   WalakApp({
     Key? key,
     required this.authRepository,
     required this.profileRepository,
     required this.paymentsRepository,
+    required this.sourceRepository,
   }) : super(key: key);
 
   final _navigatorKey = GlobalKey<NavigatorState>();
@@ -41,6 +45,9 @@ class WalakApp extends StatelessWidget {
         RepositoryProvider<PaymentsRepository>(
           create: (_) => paymentsRepository,
         ),
+        RepositoryProvider<SourceRepository>(
+          create: (_) => sourceRepository,
+        ),
       ],
       child: BlocProvider(
         create: (_) => AuthBloc(authRepository, profileRepository),
@@ -51,6 +58,9 @@ class WalakApp extends StatelessWidget {
             ),
             BlocProvider(
               create: (context) => PaymentsBloc(paymentsRepository),
+            ),
+            BlocProvider(
+              create: (context) => SourceBloc(sourceRepository),
             ),
           ],
           child: MaterialApp(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:unicons/unicons.dart';
+import 'package:walak/modules/payments/ui/add_payment/add_payment_page.dart';
 
 class PaymentsFab extends StatelessWidget {
   const PaymentsFab({
@@ -12,7 +13,9 @@ class PaymentsFab extends StatelessWidget {
     return FloatingActionButton.extended(
       label: const Text('Ingresar Pago'),
       icon: const Icon(UniconsLine.plus),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.push(context, AddPaymentPage.route());
+      },
     );
   }
 }
