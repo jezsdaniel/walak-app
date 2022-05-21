@@ -22,5 +22,5 @@ class Endpoints {
 
   //source
   static const String getSource = '/source';
-  static const String getDepositRequest = '/source/deposit/request';
+  static const String depositRequest = '/source/deposit/request';
 }

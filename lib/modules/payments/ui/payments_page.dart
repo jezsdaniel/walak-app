@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:unicons/unicons.dart';
 
-import 'package:walak/core/constants/status_maps.dart';
+import 'package:walak/core/constants/constants.dart';
 import 'package:walak/core/network/network.dart';
 import 'package:walak/core/theme/theme.dart';
 import 'package:walak/core/widgets/widgets.dart';

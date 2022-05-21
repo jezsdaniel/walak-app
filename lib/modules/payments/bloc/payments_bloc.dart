@@ -20,9 +20,29 @@ class PaymentsBloc extends Bloc<PaymentsEvent, PaymentsState>
         event.to,
         event.status,
       );
-      if(res is ResultSuccess<List<SourceTransaction>>) {
+      if (res is ResultSuccess<List<SourceTransaction>>) {
         emit(state.copyWith(
           payments: res.value,
+          status: RequestStatus.success,
+        ));
+      } else {
+        emit(state.copyWith(
+          errorMessage: getErrorFromResult(res),
+          status: RequestStatus.failure,
+        ));
+      }
+    });
+
+    on<PaymentsEventAddPayment>((event, emit) async {
+      emit(state.copyWith(status: RequestStatus.inProgress));
+      final res = await _paymentsRepository.addPayment(
+        event.amount,
+        event.paymentMethodId,
+        event.code,
+        event.name,
+      );
+      if (res is ResultSuccess<bool> && res.value) {
+        emit(state.copyWith(
           status: RequestStatus.success,
         ));
       } else {

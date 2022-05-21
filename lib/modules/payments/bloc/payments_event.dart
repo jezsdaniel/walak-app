@@ -14,3 +14,17 @@ class PaymentsEventGetPaymentsHistory extends PaymentsEvent {
     this.status,
   });
 }
+
+class PaymentsEventAddPayment extends PaymentsEvent {
+  final double amount;
+  final int paymentMethodId;
+  final String? code;
+  final String? name;
+
+  PaymentsEventAddPayment({
+    required this.amount,
+    required this.paymentMethodId,
+    this.code,
+    this.name,
+  });
+}

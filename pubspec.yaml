@@ -44,6 +44,7 @@ dependencies:
   dio_logging_interceptor: ^1.0.1
   datetime_picker_formfield: ^2.0.0
   flutter_multi_formatter: ^2.5.6
+  pull_to_refresh: ^2.0.0
 
 dev_dependencies:
   flutter_test:

@@ -21,11 +21,42 @@ class PaymentsService implements PaymentsRepository {
       }
 
       final res = await NetworkHandler().dio.get(
-            Endpoints.getDepositRequest,
+            Endpoints.depositRequest,
             queryParameters: params,
           );
       if (res.statusCode == Endpoints.codeSuccess) {
         return Result.success(value: sourceTransactionListFromMap(res.data));
+      } else {
+        throw ServerException.fromJson(res.statusCode, res.data);
+      }
+    } catch (ex) {
+      return Result.error(error: ex);
+    }
+  }
+
+  @override
+  Future<Result<bool>> addPayment(
+      double amount, int paymentMethodId, String? code, String? name) async {
+    try {
+      final Map<String, dynamic> body = {
+        'amount': amount,
+        'paymentMethod': paymentMethodId,
+      };
+
+      if (code != null) {
+        body['verificationCode'] = code;
+      }
+
+      if (name != null) {
+        body['senderName'] = name;
+      }
+
+      final res = await NetworkHandler().dio.post(
+            Endpoints.depositRequest,
+            data: body,
+          );
+      if (res.statusCode == Endpoints.codeSuccess) {
+        return Result.success(value: true);
       } else {
         throw ServerException.fromJson(res.statusCode, res.data);
       }

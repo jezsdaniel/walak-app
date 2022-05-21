@@ -7,4 +7,11 @@ abstract class PaymentsRepository {
     DateTime to,
     int? status,
   );
+
+  Future<Result<bool>> addPayment(
+    double amount,
+    int paymentMethodId,
+    String? code,
+    String? name,
+  );
 }

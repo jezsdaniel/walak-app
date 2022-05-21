@@ -1,4 +1,4 @@
-import 'package:walak/modules/source/models/payment_method.dart';
+import 'package:walak/modules/source/models/models.dart';
 import 'package:walak/core/network/network.dart';
 import 'package:walak/modules/payments/models/models.dart';
 import 'package:walak/modules/payments/repository/payments_repository.dart';
@@ -47,6 +47,17 @@ class PaymentsDemo implements PaymentsRepository {
           ),
         ]);
         // return ResultError(error: 'Ups :/');
+      },
+    );
+  }
+
+  @override
+  Future<Result<bool>> addPayment(
+      double amount, int paymentMethodId, String? code, String? name) {
+    return Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        return Result.success(value: true);
       },
     );
   }
