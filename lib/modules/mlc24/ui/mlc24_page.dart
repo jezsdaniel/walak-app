@@ -2,26 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unicons/unicons.dart';
 
 import '../../../core/constants/constants.dart';
 import '../../../core/network/network.dart';
 import '../../../core/theme/theme.dart';
-import '../../../core/widgets/widgets.dart';
 import '../../../core/utils/utils.dart';
-import '../bloc/payments_bloc.dart';
+import '../../../core/widgets/widgets.dart';
+import '../bloc/mlc24_bloc.dart';
+import 'widgets/mlc24_list.dart';
 import 'widgets/widgets.dart';
 
-class PaymentsPage extends StatefulWidget {
-  const PaymentsPage({Key? key}) : super(key: key);
+class MLC24Page extends StatefulWidget {
+  const MLC24Page({Key? key}) : super(key: key);
 
   @override
-  State<PaymentsPage> createState() => _PaymentsPageState();
+  State<MLC24Page> createState() => _MLC24PageState();
 }
 
-class _PaymentsPageState extends State<PaymentsPage> {
+class _MLC24PageState extends State<MLC24Page> {
   final searchController = TextEditingController();
   String searchValue = '';
 
@@ -40,8 +41,8 @@ class _PaymentsPageState extends State<PaymentsPage> {
     super.initState();
 
     context
-        .read<PaymentsBloc>()
-        .add(PaymentsEventGetPaymentsHistory(from: fromDate, to: toDate));
+        .read<MLC24Bloc>()
+        .add(MLC24EventGetHistory(from: fromDate, to: toDate));
 
     searchController.addListener(() {
       setState(() {
@@ -60,7 +61,7 @@ class _PaymentsPageState extends State<PaymentsPage> {
       statusBarIconBrightness: Brightness.dark,
       statusBarBrightness: Brightness.light,
     ));
-    return BlocConsumer<PaymentsBloc, PaymentsState>(
+    return BlocConsumer<MLC24Bloc, MLC24State>(
       listener: (context, state) {
         if (state.status == RequestStatus.failure) {
           final snackBar = SnackBar(
@@ -183,8 +184,8 @@ class _PaymentsPageState extends State<PaymentsPage> {
                   onFilter: () {
                     if (filter) {
                       context
-                          .read<PaymentsBloc>()
-                          .add(PaymentsEventGetPaymentsHistory(
+                          .read<MLC24Bloc>()
+                          .add(MLC24EventGetHistory(
                             from: fromDate,
                             to: toDate,
                             status: status >= 0 ? status : null,
@@ -197,16 +198,16 @@ class _PaymentsPageState extends State<PaymentsPage> {
                 ),
               ];
             },
-            body: PaymentsList(
-              payments: searchValue != ''
-                  ? state.payments
+            body: MLC24List(
+              transactions: searchValue != ''
+                  ? state.transactions
                       .where((element) =>
                           element.amount.toInt().toString() == (searchValue))
                       .toList()
-                  : state.payments,
+                  : state.transactions,
             ),
           ),
-          fab: const PaymentsFab(),
+          fab: const MLC24Fab(),
         );
       },
     );

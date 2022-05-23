@@ -1,8 +1,8 @@
-import 'package:walak/modules/source/models/models.dart';
-import 'package:walak/core/network/network.dart';
-import 'package:walak/modules/payments/models/models.dart';
-import 'package:walak/modules/payments/repository/payments_repository.dart';
-import 'package:walak/modules/profile/models/models.dart';
+import '../../source/models/models.dart';
+import '../../../core/network/network.dart';
+import '../models/models.dart';
+import 'payments_repository.dart';
+import '../../profile/models/models.dart';
 
 class PaymentsDemo implements PaymentsRepository {
   @override

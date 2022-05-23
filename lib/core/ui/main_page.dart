@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:unicons/unicons.dart';
 
-import 'package:walak/core/theme/theme.dart';
-import 'package:walak/modules/payments/ui/payments_page.dart';
-import 'package:walak/modules/profile/ui/profile_page.dart';
-import 'package:walak/modules/source/bloc/source_bloc.dart';
+import '../../modules/mlc24/ui/mlc24_page.dart';
+import '../theme/theme.dart';
+import '../../modules/payments/ui/payments_page.dart';
+import '../../modules/profile/ui/profile_page.dart';
+import '../../modules/source/bloc/source_bloc.dart';
 
 class MainPage extends StatefulWidget {
   static Route route() {
@@ -44,6 +44,8 @@ class _MainPageState extends State<MainPage> {
 
   Widget getPage(int index) {
     switch (index) {
+      case 0:
+        return const MLC24Page();
       case 1:
         return const PaymentsPage();
       case 2:

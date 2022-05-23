@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
 
-import 'package:walak/core/constants/constants.dart';
-import 'package:walak/core/widgets/widgets.dart';
-import 'package:walak/modules/payments/models/models.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../core/widgets/widgets.dart';
+import '../../models/models.dart';
 
 class PaymentsList extends StatelessWidget {
   final List<SourceTransaction> payments;

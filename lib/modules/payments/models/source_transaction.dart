@@ -1,5 +1,5 @@
-import 'package:walak/modules/profile/models/models.dart';
-import 'package:walak/modules/source/models/models.dart';
+import '../../profile/models/models.dart';
+import '../../source/models/models.dart';
 
 List<SourceTransaction> sourceTransactionListFromMap(List<dynamic> json) =>
     List<SourceTransaction>.from(json.map((x) => SourceTransaction.fromMap(x)));

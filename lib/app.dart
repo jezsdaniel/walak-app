@@ -1,25 +1,30 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:walak/core/ui/main_page.dart';
-import 'package:walak/core/theme/theme.dart';
-import 'package:walak/modules/auth/bloc/auth_bloc.dart';
-import 'package:walak/modules/auth/repository/auth_repository.dart';
-import 'package:walak/modules/auth/ui/auth_page.dart';
-import 'package:walak/modules/auth/ui/splash_page.dart';
-import 'package:walak/modules/payments/bloc/payments_bloc.dart';
-import 'package:walak/modules/payments/repository/payments_repository.dart';
-import 'package:walak/modules/profile/bloc/profile_bloc.dart';
-import 'package:walak/modules/profile/repository/profile_repository.dart';
-import 'package:walak/modules/source/bloc/source_bloc.dart';
-import 'package:walak/modules/source/repository/source_repository.dart';
+import 'core/ui/main_page.dart';
+import 'core/theme/theme.dart';
+import 'modules/auth/bloc/auth_bloc.dart';
+import 'modules/auth/repository/auth_repository.dart';
+import 'modules/auth/ui/auth_page.dart';
+import 'modules/auth/ui/splash_page.dart';
+import 'modules/payments/bloc/payments_bloc.dart';
+import 'modules/payments/repository/payments_repository.dart';
+import 'modules/profile/bloc/profile_bloc.dart';
+import 'modules/profile/repository/profile_repository.dart';
+import 'modules/source/bloc/source_bloc.dart';
+import 'modules/source/repository/source_repository.dart';
+
+import 'modules/mlc24/bloc/mlc24_bloc.dart';
+import 'modules/mlc24/repository/mlc24_repository.dart';
 
 class WalakApp extends StatelessWidget {
   final AuthRepository authRepository;
   final ProfileRepository profileRepository;
   final PaymentsRepository paymentsRepository;
   final SourceRepository sourceRepository;
+  final MLC24Repository mlc24Repository;
 
   WalakApp({
     Key? key,
@@ -27,6 +32,7 @@ class WalakApp extends StatelessWidget {
     required this.profileRepository,
     required this.paymentsRepository,
     required this.sourceRepository,
+    required this.mlc24Repository,
   }) : super(key: key);
 
   final _navigatorKey = GlobalKey<NavigatorState>();
@@ -48,6 +54,9 @@ class WalakApp extends StatelessWidget {
         RepositoryProvider<SourceRepository>(
           create: (_) => sourceRepository,
         ),
+        RepositoryProvider<MLC24Repository>(
+          create: (_) => mlc24Repository,
+        ),
       ],
       child: BlocProvider(
         create: (_) => AuthBloc(authRepository, profileRepository),
@@ -62,10 +71,14 @@ class WalakApp extends StatelessWidget {
             BlocProvider(
               create: (context) => SourceBloc(sourceRepository),
             ),
+            BlocProvider(
+              create: (context) => MLC24Bloc(mlc24Repository),
+            ),
           ],
           child: MaterialApp(
             title: 'Walak',
             theme: wTheme,
+            scrollBehavior: const CupertinoScrollBehavior(),
             navigatorKey: _navigatorKey,
             onGenerateRoute: (_) => SplashPage.route(),
             builder: (context, child) {

@@ -23,4 +23,7 @@ class Endpoints {
   //source
   static const String getSource = '/source';
   static const String depositRequest = '/source/deposit/request';
+
+  //transfer
+  static const String transferRequest = '/transfer/request';
 }
