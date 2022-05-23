@@ -26,4 +26,5 @@ class Endpoints {
 
   //transfer
   static const String transferRequest = '/transfer/request';
+  static const String requestFee = '/transfer/request/fee';
 }

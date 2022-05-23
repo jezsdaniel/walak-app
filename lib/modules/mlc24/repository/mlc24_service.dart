@@ -25,7 +25,34 @@ class MLC24Service implements MLC24Repository {
       } else {
         throw ServerException.fromJson(res.statusCode, res.data);
       }
+    } catch (ex) {
+      return Result.error(error: ex);
+    }
+  }
 
+  @override
+  Future<Result<bool>> sendRequest(int amount, double amountPay, double fee,
+      String cardNumber, String senderName) async {
+    try {
+      final Map<String, dynamic> body = {
+        'serviceId': 2,
+        'amount': amount,
+        'amountPay': amountPay,
+        'fee': fee,
+        'cardNumber': cardNumber,
+        'senderName': senderName,
+        'phoneNumber': '',
+      };
+
+      final res = await NetworkHandler().dio.post(
+            Endpoints.transferRequest,
+            data: body,
+          );
+      if (res.statusCode == Endpoints.codeSuccess) {
+        return Result.success(value: true);
+      } else {
+        throw ServerException.fromJson(res.statusCode, res.data);
+      }
     } catch (ex) {
       return Result.error(error: ex);
     }

@@ -13,6 +13,7 @@ import 'modules/payments/bloc/payments_bloc.dart';
 import 'modules/payments/repository/payments_repository.dart';
 import 'modules/profile/bloc/profile_bloc.dart';
 import 'modules/profile/repository/profile_repository.dart';
+import 'modules/services/repository/services_repository.dart';
 import 'modules/source/bloc/source_bloc.dart';
 import 'modules/source/repository/source_repository.dart';
 
@@ -25,6 +26,7 @@ class WalakApp extends StatelessWidget {
   final PaymentsRepository paymentsRepository;
   final SourceRepository sourceRepository;
   final MLC24Repository mlc24Repository;
+  final ServicesRepository servicesRepository;
 
   WalakApp({
     Key? key,
@@ -33,6 +35,7 @@ class WalakApp extends StatelessWidget {
     required this.paymentsRepository,
     required this.sourceRepository,
     required this.mlc24Repository,
+    required this.servicesRepository,
   }) : super(key: key);
 
   final _navigatorKey = GlobalKey<NavigatorState>();
@@ -57,6 +60,9 @@ class WalakApp extends StatelessWidget {
         RepositoryProvider<MLC24Repository>(
           create: (_) => mlc24Repository,
         ),
+        RepositoryProvider<ServicesRepository>(
+          create: (_) => servicesRepository,
+        ),
       ],
       child: BlocProvider(
         create: (_) => AuthBloc(authRepository, profileRepository),
@@ -72,7 +78,7 @@ class WalakApp extends StatelessWidget {
               create: (context) => SourceBloc(sourceRepository),
             ),
             BlocProvider(
-              create: (context) => MLC24Bloc(mlc24Repository),
+              create: (context) => MLC24Bloc(mlc24Repository, servicesRepository),
             ),
           ],
           child: MaterialApp(

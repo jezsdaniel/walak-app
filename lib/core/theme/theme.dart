@@ -15,6 +15,7 @@ final wTheme = ThemeData(
     primary: WColors.primary,
     secondary: WColors.secondary,
   ),
+  useMaterial3: true,
   textTheme: wText,
   fontFamily: 'OpenSans',
   elevatedButtonTheme: ElevatedButtonThemeData(

@@ -61,25 +61,24 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: getPage(currentTab),
-      bottomNavigationBar: BottomNavigationBar(
-        showUnselectedLabels: false,
-        unselectedItemColor: WColors.secondaryVariant,
-        currentIndex: currentTab,
-        onTap: (index) {
+      bottomNavigationBar: NavigationBar(
+        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+        selectedIndex: currentTab,
+        onDestinationSelected: (index) {
           setState(() {
             currentTab = index;
           });
         },
-        items: const [
-          BottomNavigationBarItem(
+        destinations: const [
+          NavigationDestination(
             icon: Icon(UniconsLine.wallet),
             label: 'MLC 24hs',
           ),
-          BottomNavigationBarItem(
+          NavigationDestination(
             icon: Icon(UniconsLine.dollar_alt),
             label: 'Pagos',
           ),
-          BottomNavigationBarItem(
+          NavigationDestination(
             icon: Icon(UniconsLine.user_circle),
             label: 'Perfil',
           ),

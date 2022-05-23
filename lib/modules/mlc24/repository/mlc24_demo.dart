@@ -13,4 +13,14 @@ class MLC24Demo implements MLC24Repository {
       },
     );
   }
+
+  @override
+  Future<Result<bool>> sendRequest(int amount, double amountPay, double fee, String cardNumber, String senderName) {
+    return Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        return Result.success(value: true);
+      },
+    );
+  }
 }

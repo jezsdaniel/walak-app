@@ -7,4 +7,12 @@ abstract class MLC24Repository {
     DateTime to,
     int? status,
   );
+
+  Future<Result<bool>> sendRequest(
+    int amount,
+    double amountPay,
+    double fee,
+    String cardNumber,
+    String senderName,
+  );
 }

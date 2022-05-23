@@ -7,7 +7,6 @@ import 'package:walak/core/theme/theme.dart';
 import 'package:walak/modules/source/bloc/source_bloc.dart';
 
 class SectionAppBar extends StatelessWidget {
-
   const SectionAppBar({
     Key? key,
   }) : super(key: key);
@@ -18,6 +17,7 @@ class SectionAppBar extends StatelessWidget {
       pinned: true,
       floating: true,
       centerTitle: false,
+      surfaceTintColor: WColors.primary,
       backgroundColor: WColors.background,
       elevation: 1,
       leading: IconButton(

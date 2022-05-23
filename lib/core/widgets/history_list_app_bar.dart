@@ -23,6 +23,7 @@ class HistoryListAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      surfaceTintColor: WColors.primary,
       pinned: true,
       floating: true,
       forceElevated: innerBoxIsScrolled,
@@ -31,6 +32,7 @@ class HistoryListAppBar extends StatelessWidget {
       elevation: 1,
       bottom: AppBar(
         elevation: 0,
+        surfaceTintColor: WColors.primary,
         backgroundColor: WColors.background,
         title: Container(
           height: 60,

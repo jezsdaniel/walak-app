@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unicons/unicons.dart';
 
-import 'package:walak/core/network/network.dart';
-import 'package:walak/core/theme/theme.dart';
-import 'package:walak/core/widgets/widgets.dart';
-import 'package:walak/modules/payments/bloc/payments_bloc.dart';
-import 'package:walak/modules/payments/ui/add_payment/widgets/widgets.dart';
-import 'package:walak/modules/source/bloc/source_bloc.dart';
-import 'package:walak/modules/source/models/models.dart';
+import '../../../../core/network/network.dart';
+import '../../../../core/theme/theme.dart';
+import '../../../../core/widgets/widgets.dart';
+import '../../bloc/payments_bloc.dart';
+import 'widgets/widgets.dart';
+import '../../../source/bloc/source_bloc.dart';
+import '../../../source/models/models.dart';
 
 class AddPaymentPage extends StatefulWidget {
   static Route route() {
